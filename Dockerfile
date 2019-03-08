@@ -18,7 +18,7 @@ RUN apt update \
 ADD config /home/config
 
 RUN su op \
- && cd
+ && cd \
  && cd openwrt \
  && cp ../../config .config \
  && make V=s
