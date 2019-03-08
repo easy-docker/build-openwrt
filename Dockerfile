@@ -6,6 +6,10 @@ RUN apt update \
  && apt-get install -yyq build-essential git gawk unzip python2.7 libncurses5-dev wget vim \
  && useradd op -m -s /bin/bash
 
+ADD config /home/op/config
+
+RUN chmod 777 /home/op/config
+
 USER op
 
 RUN cd \
@@ -15,13 +19,7 @@ RUN cd \
  && git pull \
  && git checkout openwrt-18.06 \
  && git branch \
- && ./scripts/feeds update -a && ./scripts/feeds install -a 
-
-ADD config /home/op/config
-
-RUN chmod 777 /home/op/config \
- && cd \
- && cd openwrt \
+ && ./scripts/feeds update -a && ./scripts/feeds install -a \
  && cp /home/op/config .config \
  && make V=s
 
