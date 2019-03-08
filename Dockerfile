@@ -15,12 +15,12 @@ RUN apt update \
  && git branch \
  && ./scripts/feeds update -a && ./scripts/feeds install -a 
 
-ADD config /home/config
+ADD config /home/op/config
 
-RUN su op \
+RUN chmod 777 /home/op/config && su op \
  && cd \
  && cd openwrt \
- && cp ../../config .config \
+ && cp /home/op/config .config \
  && make V=s
 
 CMD ["/bin/bash -c 'while true;do sleep 3600;done'"]
