@@ -6,8 +6,8 @@
 ---
 # 使用方法
 ```
-docker run -d -v /data/openwrt:/data --restart=always --name op ghostry/build-openwrt
-docker exec -it op bash
+docker run -d -v /data/openwrt:/data --restart=always --name gbuildopenwrt ghostry/build-openwrt
+docker exec -it gbuildopenwrt bash
 su op
 cd
 cd openwrt
