@@ -4,9 +4,11 @@ LABEL maintainer="Ghostry <ghostry.green@gmail.com>"
 
 RUN apt update \
  && apt-get install -yyq build-essential git gawk unzip python2.7 libncurses5-dev wget vim \
- && useradd op -m -s /bin/bash \
- && su op \
- && cd \
+ && useradd op -m -s /bin/bash
+
+USER op
+
+RUN cd \
  && git clone --depth 1 https://github.com/openwrt/openwrt.git \
  && cd openwrt \
  && git config remote.origin.fetch '+refs/heads/openwrt-18.06:refs/remotes/origin/openwrt-18.06' \
@@ -17,7 +19,7 @@ RUN apt update \
 
 ADD config /home/op/config
 
-RUN chmod 777 /home/op/config && su op \
+RUN chmod 777 /home/op/config \
  && cd \
  && cd openwrt \
  && cp /home/op/config .config \
