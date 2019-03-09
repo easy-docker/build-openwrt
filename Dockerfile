@@ -21,14 +21,14 @@ RUN cd \
  && git branch \
  && ./scripts/feeds update -a && ./scripts/feeds install -a \
  && cp /home/op/config .config
+
+WORKDIR /home/op/openwrt
  
-RUN cd \
- && cd openwrt \
- && make V=s
+RUN make V=s \
+    && make clean
 
 USER root
 ADD start.sh /start.sh
-
 RUN chmod +x /start.sh
 
 CMD ["/start.sh"]
