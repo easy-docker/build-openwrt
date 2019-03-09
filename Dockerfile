@@ -26,4 +26,9 @@ RUN cd \
  && cd openwrt \
  && make V=s
 
-CMD ["/bin/bash -c 'while true;do sleep 3600;done'"]
+USER root
+ADD start.sh /start.sh
+
+RUN chmod +x /start.sh
+
+CMD ["/start.sh"]
