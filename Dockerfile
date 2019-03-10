@@ -23,9 +23,6 @@ RUN cd \
  && cp /home/op/config .config
 
 WORKDIR /home/op/openwrt
- 
-RUN make V=s \
-    && make clean
 
 USER root
 ADD start.sh /start.sh
