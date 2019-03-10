@@ -1,7 +1,6 @@
 # docker-build-openwrt
 
 此处默认编译的是openwrt18.06需要其他版本可以切换branch
-下载好会自带youkukl1的成品刷机包.
 
 ---
 # 使用方法
