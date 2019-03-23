@@ -9,8 +9,6 @@ docker pull ghostry/build-openwrt
 docker run -d -v /data/openwrt:/data --name gbuildopenwrt ghostry/build-openwrt
 docker exec -it gbuildopenwrt bash
 su op
-cd
-cd openwrt
 git branch
 git pull
 ./scripts/feeds update -a && ./scripts/feeds install -a

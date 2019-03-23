@@ -7,8 +7,9 @@ RUN apt update \
  && useradd op -m -s /bin/bash && mkdir /data && chmod 777 /data
 
 ADD config /home/op/config
-
-RUN chmod 777 /home/op/config
+ADD dl /home/op/dl
+RUN chmod 777 /home/op/config \
+    && chmod 777 /home/op/dl
 
 USER op
 
@@ -21,9 +22,8 @@ RUN cd \
  && git branch \
  && ./scripts/feeds update -a && ./scripts/feeds install -a \
  && mv /home/op/config .config \
- && ln -s /data bin
-
-ADD dl /home/op/openwrt/dl
+ && ln -s /data bin \
+ && ln -s ../dl
 
 WORKDIR /home/op/openwrt
 
