@@ -3,13 +3,16 @@ FROM ubuntu:bionic
 LABEL maintainer="Ghostry <ghostry.green@gmail.com>"
 
 RUN apt update \
- && apt-get install -yyq build-essential git gawk unzip python2.7 libncurses5-dev wget vim \
+ && apt-get install -yyq build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint vim \
  && useradd op -m -s /bin/bash && mkdir /data && chmod 777 /data
 
 ADD config /home/op/config
 ADD dl /home/op/dl
+ADD update.sh /home/op/update.sh
+ADD make.sh /home/op/make.sh
 RUN chmod 777 /home/op/config \
-    && chmod 777 /home/op/dl
+    && chmod 777 /home/op/dl \
+    && chmod 777 /home/op/*.sh
 
 USER op
 
@@ -22,6 +25,7 @@ RUN cd \
  && git branch \
  && ./scripts/feeds update -a && ./scripts/feeds install -a \
  && mv /home/op/config .config \
+ && mv /home/op/*.sh ./ \
  && ln -s /data bin \
  && ln -s ../dl
 
