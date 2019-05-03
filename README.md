@@ -6,12 +6,15 @@
 # 使用方法
 ```
 docker pull ghostry/build-openwrt
+docker stop gbuildopenwrt
+docker rm gbuildopenwrt
 docker run -d -v ~/openwrt:/data --name gbuildopenwrt ghostry/build-openwrt
 docker exec -it gbuildopenwrt bash
 su op
 git branch
 git pull
-./scripts/feeds update -a ; ./scripts/feeds install -a
+./scripts/feeds update -a
+./scripts/feeds install -a
 make menuconfig
 #选择需要的内容,然后
 make V=s

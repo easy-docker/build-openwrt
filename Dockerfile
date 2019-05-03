@@ -27,7 +27,6 @@ RUN cd \
     && git checkout openwrt-18.06 \
     && git branch \
     && ./scripts/feeds update -a && ./scripts/feeds install -a \
-    && cp /home/op/config .config \
     && cp /home/op/*.sh ./
 
 WORKDIR /home/op/openwrt
