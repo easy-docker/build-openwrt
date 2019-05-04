@@ -8,14 +8,12 @@
 docker pull ghostry/build-openwrt
 docker stop gbuildopenwrt
 docker rm gbuildopenwrt
+mkdir -p ~/openwrt
+chmod 777 ~/openwrt
 docker run -d -v ~/openwrt:/data --name gbuildopenwrt ghostry/build-openwrt
 docker exec -it gbuildopenwrt bash
-su op
-git branch
-git pull
-./scripts/feeds update -a
-./scripts/feeds install -a
+./update.sh
 make menuconfig
 #选择需要的内容,然后
-make V=s
+./make.sh
 ```
