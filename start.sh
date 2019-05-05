@@ -7,10 +7,9 @@ if [ ! -L dl ];then
     ln -s /data/bin ./
     mkdir -p /data/build_dir
     ln -s /data/build_dir ./
+    mv /home/op/openwrt/staging_dir /data/staging_dir
     mkdir -p /data/staging_dir
     ln -s /data/staging_dir ./
-    mkdir -p /data/target
-    ln -s /data/target ./
     chmod -R 777 /data
 fi
 if [ ! -f .config ];then
