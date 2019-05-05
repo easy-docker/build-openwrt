@@ -17,7 +17,7 @@ ADD make.sh /home/op/make.sh
 ADD start.sh /start.sh
 RUN chmod 777 /home/op/config \
     && chmod 777 /home/op/*.sh \
-    &&chmod 755 /start.sh
+    && chmod 755 /start.sh
 
 USER op
 
