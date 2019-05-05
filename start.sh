@@ -7,7 +7,7 @@ if [ ! -L dl ];then
     ln -s /data/bin ./
     mkdir -p /data/build_dir
     ln -s /data/build_dir ./
-    mv /home/op/openwrt/staging_dir /data/staging_dir
+    mv -f /home/op/openwrt/staging_dir /data/staging_dir
     rm -rf /home/op/openwrt/staging_dir
     mkdir -p /data/staging_dir
     ln -s /data/staging_dir ./
