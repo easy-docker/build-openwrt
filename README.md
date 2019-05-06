@@ -12,6 +12,7 @@ mkdir -p ~/openwrt
 chmod 777 ~/openwrt
 docker run -d -v ~/openwrt:/data --name gbuildopenwrt ghostry/build-openwrt
 docker exec -it gbuildopenwrt bash
+./linux.sh  #Linux可以移动build_dir,staging_dir到主机,Mac不能,会出错
 ./update.sh
 make menuconfig
 #选择需要的内容,然后
