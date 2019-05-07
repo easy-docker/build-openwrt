@@ -14,6 +14,7 @@ RUN apt update \
 ADD config /home/op/config
 ADD update.sh /home/op/update.sh
 ADD make.sh /home/op/make.sh
+ADD linux.sh /home/op/linux.sh
 ADD start.sh /start.sh
 RUN chmod 777 /home/op/config \
     && chmod 777 /home/op/*.sh \
