@@ -4,6 +4,7 @@ LABEL maintainer="Ghostry <ghostry.green@gmail.com>"
 
 RUN apt update \
     && export DEBIAN_FRONTEND=noninteractive \
+    && apt upgrade -yyq \
     && apt-get install -yyq build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint vim wget bash-completion \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
@@ -29,6 +30,7 @@ RUN cd \
     && git pull \
     && git checkout openwrt-18.06 \
     && git branch \
+    && echo 'src-git gmod https://github.com/ghostry/openwrt-gmod;openwrt-18.06' >> feeds.conf.default \
     && ./scripts/feeds update -a && ./scripts/feeds install -a \
     && cp /home/op/*.sh ./
 
