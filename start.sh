@@ -7,6 +7,9 @@ if [ ! -L dl ];then
     mkdir -p /data/bin
     ln -s /data/bin ./
     chmod 777 /data/bin
+    mkdir -p /data/files
+    ln -s /data/files ./
+    chmod 777 /data/files
     chmod 777 /data
 fi
 if [ ! -f .config ];then
