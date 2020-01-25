@@ -2,15 +2,27 @@ FROM ubuntu:bionic
 
 LABEL maintainer="Ghostry <ghostry.green@gmail.com>"
 
+RUN useradd op -m -s /bin/bash \
+    && mkdir /data \
+    && chmod 777 /data
+
 RUN apt update \
     && export DEBIAN_FRONTEND=noninteractive \
     && apt upgrade -yyq \
-    && apt-get install -yyq build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint vim wget bash-completion \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && useradd op -m -s /bin/bash \
-    && mkdir /data \
-    && chmod 777 /data
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt update \
+    && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get install -yyq build-essential \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt update \
+    && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get install -yyq asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint vim wget bash-completion \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 ADD config /home/op/config
 ADD update.sh /home/op/update.sh
@@ -29,7 +41,10 @@ RUN cd \
     && git config remote.origin.fetch '+refs/heads/openwrt-18.06:refs/remotes/origin/openwrt-18.06' \
     && git pull \
     && git checkout openwrt-18.06 \
-    && git branch \
+    && git branch
+
+RUN cd \
+    && cd openwrt \
     && echo 'src-git gmod https://github.com/ghostry/openwrt-gmod;openwrt-18.06' >> feeds.conf.default \
     && ./scripts/feeds update -a && ./scripts/feeds install -a \
     && cp /home/op/*.sh ./
