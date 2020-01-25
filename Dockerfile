@@ -10,7 +10,13 @@ RUN apt update \
 
 RUN apt update \
     && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get install -yyq binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib \
+    && apt-get install -yyq binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt update \
+    && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get install -yyq lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
