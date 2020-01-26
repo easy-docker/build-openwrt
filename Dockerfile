@@ -34,7 +34,13 @@ RUN apt update \
 
 RUN apt update \
     && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get install -yyq asciidoc xmlto \
+    && apt-get install -yyq asciidoc \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt update \
+    && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get install -yyq xmlto \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
