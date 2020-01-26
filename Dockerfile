@@ -32,6 +32,12 @@ RUN apt update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+RUN apt update \
+    && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get install -yyq asciidoc xmlto \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN useradd op -m -s /bin/bash \
     && mkdir /data \
     && chmod 777 /data
