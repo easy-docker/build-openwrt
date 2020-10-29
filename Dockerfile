@@ -48,27 +48,15 @@ RUN useradd op -m -s /bin/bash \
     && mkdir /data \
     && chmod 777 /data
 
-ADD config /home/op/config
 ADD update.sh /home/op/update.sh
 ADD make.sh /home/op/make.sh
-ADD linux.sh /home/op/linux.sh
 ADD start.sh /start.sh
-RUN chmod 777 /home/op/config \
-    && chmod 777 /home/op/*.sh \
+RUN chmod 777 /home/op/*.sh \
     && chmod 755 /start.sh
 
 USER op
 
-RUN cd \
-    && git clone -b openwrt-18.06 --depth 1 https://github.com/openwrt/openwrt.git
-
-RUN cd \
-    && cd openwrt \
-    && echo 'src-git gmod https://github.com/ghostry/openwrt-gmod;openwrt-18.06' >> feeds.conf.default \
-    && ./scripts/feeds update -a && ./scripts/feeds install -a \
-    && cp /home/op/*.sh ./
-
-WORKDIR /home/op/openwrt
+WORKDIR /data
 
 VOLUME ["/data"]
 
