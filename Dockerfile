@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:20.04
 
 LABEL maintainer="Ghostry <ghostry.green@gmail.com>"
 
