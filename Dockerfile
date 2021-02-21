@@ -44,6 +44,12 @@ RUN apt update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+RUN apt update \
+    && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get install -yyq python3.5 device-tree-compiler g++-multilib linux-libc-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN useradd op -m -s /bin/bash \
     && mkdir /data \
     && chmod 777 /data
@@ -53,7 +59,6 @@ ADD make.sh /home/op/make.sh
 ADD start.sh /start.sh
 RUN chmod 777 /home/op/*.sh \
     && chmod 755 /start.sh
-
 USER op
 
 WORKDIR /data
