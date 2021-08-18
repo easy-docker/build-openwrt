@@ -46,7 +46,7 @@ RUN apt update \
 
 RUN apt update \
     && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get install -yyq python3.5 device-tree-compiler g++-multilib linux-libc-dev \
+    && apt-get install -yyq python3.5 device-tree-compiler g++-multilib linux-libc-dev rsync \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
