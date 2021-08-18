@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 LABEL maintainer="Ghostry <ghostry.green@gmail.com>"
 
@@ -46,7 +46,15 @@ RUN apt update \
 
 RUN apt update \
     && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get install -yyq python3.5 device-tree-compiler g++-multilib linux-libc-dev rsync \
+    && apt-get install -yyq python3 device-tree-compiler g++-multilib linux-libc-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt update \
+    && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get install -yyq python2.7 antlr3 gperf curl swig rsync
+
+ \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
