@@ -52,9 +52,7 @@ RUN apt update \
 
 RUN apt update \
     && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get install -yyq python2.7 antlr3 gperf curl swig rsync
-
- \
+    && apt-get install -yyq python2.7 antlr3 gperf curl swig rsync mkisofs \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
