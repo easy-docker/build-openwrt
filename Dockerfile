@@ -16,7 +16,7 @@ RUN apt update \
 
 RUN apt update \
     && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get install -yyq lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib \
+    && apt-get install -yyq lib32gcc-s1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
